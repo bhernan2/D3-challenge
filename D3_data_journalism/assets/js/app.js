@@ -9,8 +9,8 @@ const margin = {
     left:100
 };
 
-var width = svgWidth - margin.left - margin.right;
-var height = svgHeight - margin.top - margin.bottom;
+const width = svgWidth - margin.left - margin.right;
+const height = svgHeight - margin.top - margin.bottom;
 
 //create an svg wrapper, append svg group holding chart, shift latter by left and top margins
 const svg = d3
@@ -53,7 +53,17 @@ let chosenYaxis = "healthcare";
     let yAxis=chartGroup.append("g")
         .call(leftAxis);
     //create scatter plot
+    let circlesGroup = chartGroup.selectAll("g circle")
+        .data(stateData)
+        .enter()
+        .append("g");
+    let XYcircles = circlesGroup.append("circle")
+        .attr("cx", d => xLinearScale(d[chosenXaxis]))
+        .attr("cy", d => yLinearScale(d[chosenYaxis]))
+        .attr("r", 15)
+        .classed("stateCircle", true);
     
+
 })
 
 
