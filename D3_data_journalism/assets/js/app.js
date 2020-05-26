@@ -21,7 +21,7 @@ const svg = d3
 
 //append svg group 
 const chartGroup = svg.append("g")
-    .attr("transform", 'translate(${margin.left}, ${margin.top})');
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 //initial params
 let chosenXaxis = "poverty";
@@ -44,7 +44,16 @@ let chosenYaxis = "healthcare";
     let xLinearScale = xScale(stateData, chosenXaxis);
     let yLinearScale = yScale(stateData, chosenYaxis);
     //initialize axis functions
-    let bottomAxis = d3.axisBottom
+    let bottomAxis = d3.axisBottom(xLinearScale);
+    let leftAxis = d3.axisLeft(yLinearScale);
+    //append x and y axes to chart
+    let xAxis = chartGroup.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(bottomAxis);
+    let yAxis=chartGroup.append("g")
+        .call(leftAxis);
+    //create scatter plot
+    
 })
 
 
