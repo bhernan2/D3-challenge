@@ -31,7 +31,7 @@
 }
 
 .stateCircle {
-  fill: #89bdd3;
+  fill: #62bb71;
   stroke: #e3e3e3;
 }
 
@@ -41,6 +41,8 @@
 }
 
 .d3-tip {
+  position: absolute;
+  pointer-events: none!important;
   padding: 6px;
   font-size: 12px;
   line-height: 1;
@@ -51,6 +53,24 @@
   background: rgba(0, 0, 0, 0.8);
   border-radius: 4px;
 }
+
+.d3-tip:after {
+  box-sizing: border-box;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips specifically */
+.d3-tip.n:after {
+  margin: 0;
+  top: 40%;
+  left: 52%;
+  transform: rotate(-90deg);
 
 /* Mobile Rules */
 @media screen and (max-width: 530px) {
